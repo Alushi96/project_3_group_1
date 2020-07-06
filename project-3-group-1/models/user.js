@@ -8,7 +8,7 @@ const userSchema = new Schema({
   PhoneNumber: { type: Number, required: true },
   DOB: { type: Number, required: true },
   Adress: { type: String, required: true },
-  type: { type: Number, required: true },
+  type: { type: String, required: true },
   synopsis: String,
 });
 
