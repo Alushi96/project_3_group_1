@@ -1,5 +1,6 @@
 import React from "react";
 import Actioncard from "../components/actioncard";
+import Recordentry from "../components/recordentry";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -36,7 +37,7 @@ function DrDashboard() {
                     <div className="sb-sidenav-menu">
                         <div className="nav">
                             <div className="sb-sidenav-menu-heading">Menu</div>
-                            <a className="nav-link" href="/drdashboard">
+                            <a className="nav-link" href="index.html">
                                 <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -52,14 +53,13 @@ function DrDashboard() {
                                     <a className="nav-link" href="layout-sidenav-light.html">Virtual Appointment</a>
                                 </nav>
                             </div>
-                            <a className="nav-link collapsed" href="/recordentry" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                                Medical Records
-  
+                               Medical Records
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
                             <div className="sb-sidenav-menu-heading">Additional Features</div>
-                            <a className="nav-link" href="/recordentry">
+                            <a className="nav-link" href="charts.html">
                                 <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
                                 Health Condition Search
                             </a>
@@ -115,97 +115,8 @@ function DrDashboard() {
                                Patients
                             </div>
                             <div className="card-body">
-                                <div className="table-responsive">
-                                    <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>First Name</th>
-                                                <th>Middle Name</th>
-                                                <th>Last Name</th>
-                                                <th>DOB</th>
-                                                <th>Appointment Date</th>
-                                                <th>Email</th>
-                                                <th>Phone Number</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>First Name</th>
-                                                <th>Middle Name</th>
-                                                <th>Last Name</th>
-                                                <th>DOB</th>
-                                                <th>Appointment Date</th>
-                                                <th>Email</th>
-                                                <th>Phone Number</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger</td>
-                                                <td>Q</td>
-                                                <td>Nixon</td>
-                                                <td>04/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Q</td>
-                                                <td>Accountant</td>
-                                                <td>04/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ashton</td>
-                                                <td>Q</td>
-                                                <td>Cox</td>
-                                                <td>04/25/2021</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cedric</td>
-                                                <td>Q</td>
-                                                <td>Kelly</td>
-                                                <td>04/05/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Airi</td>
-                                                <td>Q</td>
-                                                <td>Satou</td>
-                                                <td>12/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brielle </td>
-                                                <td>Q</td>
-                                                <td>Williamson</td>
-                                                <td>04/25/2001</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Herrod</td>
-                                                <td>Q</td>
-                                                <td>Chandler</td>
-                                                <td>06/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <Recordentry />
+
                             </div>
                         </div>
                     </div>

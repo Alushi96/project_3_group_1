@@ -1,8 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link, Route } from "react-router-dom";
+import DrDashboard from "./drdashboard";
 
-export default class Login extends Component {
-    render() {
+function Login(props) {
         return (
+            
+                 <div className="App">
+      <div className="auth-wrapper">
+        <div className="auth-inner">
+            <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+            <div className="container">
+              <Link className="navbar-brand" to={"/sign-in"}>HealthApp</Link>
+              <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/sign-up"}>Sign-Up</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          
             <form>
                 <h3>Sign In</h3>
 
@@ -23,11 +44,22 @@ export default class Login extends Component {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                {/* <button type="submit" className="btn btn-primary btn-block">Submit</button> */}
+                <Link to={`${props.match.url}/drdashboard`} role="button" className="btn btn-link">Submit</Link>{" "}
                 <p className="forgot-password text-right">
                     Don't have an account yet? <a href="/sign-up">Sign-Up</a>
                 </p>
             </form>
+      <Route exact path={`${props.match.url}/drdashboard`} component={DrDashboard} />
+
+
+            </div>
+            </div>
+            </div>
+              
+
         );
     }
-}
+        
+    export default Login;
+

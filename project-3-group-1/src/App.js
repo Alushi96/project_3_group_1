@@ -6,6 +6,8 @@ import Login from "./pages/login";
 import SignUp from "./pages/signup";
 import DrDashboard from "./pages/drdashboard";
 import PtDashboard from "./pages/ptdashboard";
+import Recordentry from "./pages/recordentry";
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
             <Route path="/sign-up" component={SignUp} />
             <Route path="/drdashboard" component={DrDashboard} />
             <Route path="/ptdashboard" component={PtDashboard} />
+            <Route path="/recordentry" component={Recordentry} />
           </Switch>
     </Router>
   );
