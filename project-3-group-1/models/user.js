@@ -9,9 +9,15 @@ const userSchema = new Schema({
   DOB: { type: Number, required: true },
   Adress: { type: String, required: true },
   type: { type: String, required: true },
-  synopsis: String,
+  appointmentdate: { type: Number, required: true },
+  dcdashboard: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "dcdashboard"
+    }
+  ]
 });
 
-const user = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = user;
+module.exports = User;
