@@ -1,9 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Actioncard from "../components/actioncard";
+import API from "../utils/API";
+import { useAuth } from "../context/auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 function DrDashboard() {
+
+    const [isLoaded, setLoaded] = useState(false);
+    const [user, setUser] = useState([])
+    const [patient, setPatient] = useState([])
+    let flag = true;
+
+
+    useEffect(() => {
+        loadUser()
+    }, [])
+
+    function loadUser() {
+
+        const existingTokens = JSON.parse(localStorage.getItem("tokens"));
+        var id = existingTokens;
+
+        API.getDoctor(id)
+          .then(res => {
+              if (res.data) {
+              setUser(res.data);
+              if (res.data.dcdashboard){
+                  setLoaded(true)
+              }
+              }
+            })
+          .catch(err => console.log(err));
+    };
+
+    if (isLoaded){
+            loadPatinets();
+            setLoaded(false)
+    }
+    
+
+    function loadPatinets() {
+        API.getUser(user.dcdashboard[0])
+        .then(res => setPatient(res.data))
+        .catch(err => console.log(err))
+    }
+    
+
+    const { setAuthTokens } = useAuth();
+      
+    function logOut() {
+        setAuthTokens("");
+    }
+
+
+
         return (
         <div>
            <div className="sb-nav-fixed">
@@ -15,18 +67,18 @@ function DrDashboard() {
                 <div className="input-group">
                     <input className="form-control" type="text" placeholder="Search for a Patient" aria-label="Search" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
-                        <button className="btn btn-primary" type="button"><i className="fas fa-search"></i></button>
+                        <button className="btn btn-primary" type="button"><i className="fas fa-search">Search</i></button>
                     </div>
                 </div>
             </form>
             {/* <!-- Navbar--> */}
             <ul className="navbar-nav ml-auto ml-md-0">
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-user fa-fw"></i></a>
-                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <li className="nav-item dropdown">
+                    {/* <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-user fa-fw"></i></a> */}
+                    {/* <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown"> */}
                  
-                        <a className="dropdown-item" href="#">Logout</a>
-                    </div>
+                        <a className="dropdown-item" onClick={logOut}>Logout</a>
+                    {/* </div> */}
                 </li>
             </ul>
         </nav>
@@ -68,7 +120,11 @@ function DrDashboard() {
                     </div>
                     <div className="sb-sidenav-footer">
                         <div className="small">Logged in as:</div>
-                        Dr. Smith
+                        Dr. {user.Name +" "+ user.Surname}
+                    </div>
+                    <div className="sb-sidenav-footer">
+                        <div className="small">Doctor ID:</div>
+                        {user._id}
                     </div>
                 </nav>
             </div>
@@ -77,14 +133,14 @@ function DrDashboard() {
                     <div className="container-fluid bg-light">
                         <h1 className="mt-4">Physician Dashboard</h1>
                         <ol className="breadcrumb mb-4">
-                            <li className="breadcrumb-item active">Welcome, Dr. Smith</li>
+                            <li className="breadcrumb-item active">Welcome, Dr. {user.Name +" "+ user.Surname}</li>
                         </ol>
                         <div className="row">
                             <div className="col-xl-3 col-md-6">
                                 <div className="card bg-primary text-white mb-4">
                                     <div className="card-body">Search a Patient</div>
                                     <div className="card-footer d-flex align-items-center justify-content-between">
-                                        <a className="small text-white stretched-link" href="#">View Details</a>
+                                        <a className="small text-white stretched-link" href="/patientSearch" >View Details</a>
                                         <div className="small text-white"><i className="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -116,14 +172,14 @@ function DrDashboard() {
                             </div>
                             <div className="card-body">
                                 <div className="table-responsive">
-                                    <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                         <thead>
                                             <tr>
                                                 <th>First Name</th>
                                                 <th>Middle Name</th>
                                                 <th>Last Name</th>
                                                 <th>DOB</th>
-                                                <th>Appointment Date</th>
+                                                <th>Client ID</th>
                                                 <th>Email</th>
                                                 <th>Phone Number</th>
                                             </tr>
@@ -134,29 +190,20 @@ function DrDashboard() {
                                                 <th>Middle Name</th>
                                                 <th>Last Name</th>
                                                 <th>DOB</th>
-                                                <th>Appointment Date</th>
+                                                <th>Client ID</th>
                                                 <th>Email</th>
                                                 <th>Phone Number</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                             <tr>
-                                                <td>Tiger</td>
-                                                <td>Q</td>
-                                                <td>Nixon</td>
-                                                <td>04/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Q</td>
-                                                <td>Accountant</td>
-                                                <td>04/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
+                                                <td>{patient.Name}</td>
+                                                <td>{patient.Surname}</td>
+                                                <td>{patient.Surname}</td>
+                                                <td>{patient.DOB}</td>
+                                                <td>{patient._id}</td>
+                                                <td>{patient.Email}</td>
+                                                <td>{patient.PhoneNumber}</td>
                                             </tr>
                                             <tr>
                                                 <td>Ashton</td>

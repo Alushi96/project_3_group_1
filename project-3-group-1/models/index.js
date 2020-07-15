@@ -1,4 +1,5 @@
 module.exports = {
-    user: require("./user"),
-    dcdashboard: require("./dcdashboard")
+    User: require("./user"),
+    Dcdashboard: require("./dcdashboard"),
+    Doctor: require("./doctor")
   };

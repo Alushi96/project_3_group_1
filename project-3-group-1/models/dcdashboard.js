@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 
 const dcdashboardSchema = new Schema({
-    helthproblems: { type: String},
-    medications: { type: String},
-    directives: {type: String},
-    patientsearch: {type: String},
-    history: {type: String},
+    helthproblems: String,
+    medications: String,
+    directives: String,
+    patientsearch: String,
+    history: String,
   });
   
   const Dcdashboard = mongoose.model("Dcdashboard", dcdashboardSchema);
