@@ -14,6 +14,10 @@ function PatientSearch() {
     const [id, setID] = useState("");
     const [patient, setPatient] = useState([]);
 
+    const patientData = {
+        id: doctorID
+    };
+
     function postSubmit() {
         API.getUser(id)
           .then(res => setPatient(res.data))
@@ -23,6 +27,9 @@ function PatientSearch() {
 
     function postAdd() {
         API.addPatient(doctorID, patient)
+        .catch(err => console.log(err))
+
+        API.addDoctor(patient._id, patientData)
         .catch(err => console.log(err))
 
     }

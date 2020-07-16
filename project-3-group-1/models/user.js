@@ -8,10 +8,16 @@ const userSchema = new Schema({
   Surname: { type: String, required: true },
   PhoneNumber: { type: Number, required: true },
   DOB: { type: String, required: true },
-  Doctor: {type: Boolean, required: true}
-  // Address: { type: String, required: true },
+  Doctor: {type: Boolean, required: true},
+  Address: { type: String, required: true },
   // type: { type: String, required: true },
   // appointmentdate: { type: Number, required: false }
+  doctor: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user"
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);

@@ -9,6 +9,7 @@ import DrDashboard from "./pages/drdashboard";
 import PtDashboard from "./pages/ptdashboard";
 import Recordentry from "./pages/recordentry";
 import PatientSearch from "./pages/patientSearch";
+import SignupExtend from "./pages/signupextend";
 
 import PrivateRoute from './PrivateRoute';
 import { AuthContext } from "./context/auth";
@@ -33,6 +34,7 @@ function App(props) {
             <Route path="/sign-in/doctor" component={DoctorLogin} />
             <Route path="/sign-up" component={SignUp} />
             <PrivateRoute path="/drdashboard" component={DrDashboard} />
+            <PrivateRoute path="/signupextend" component={SignupExtend} />
             <PrivateRoute path="/ptdashboard" component={PtDashboard} />
             <PrivateRoute path="/patientSearch" component={PatientSearch} />
             <PrivateRoute path="/recordentry" component={Recordentry} />

@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function PtDashboard() {
 
     const [user, setUser] = useState([])
+    const [isLoaded, setLoaded] = useState(false);
+    const [doctor, setDoctor] = useState([])
 
     useEffect(() => {
         loadUser()
@@ -21,10 +23,29 @@ function PtDashboard() {
 
         API.getUser(id)
         //   .then(res => console.log(res))
-          .then(res => setUser(res.data))
+          .then(res => {
+              if (res.data) {
+              setUser(res.data);
+                if(res.data.doctor) {
+                    setLoaded(true)
+                }
+            }
+            
+          })
           .catch(err => console.log(err));
 
       };
+
+      if (isLoaded) {
+          loadDoctors();
+          setLoaded(false)
+      }
+
+      function loadDoctors() {
+          API.getDoctor(user.doctor[0])
+          .then(res => setDoctor(res.data))
+          .catch(err => console.log(err))
+      }
         const { setAuthTokens } = useAuth();
       
         function logOut() {
@@ -144,11 +165,11 @@ function PtDashboard() {
                             <div className="card-header">
                                 <i className="fas fa-table mr-1"></i>
                                Details About Your Upcoming Appointment
-                               <Locationcard doctor="Dr. John Smith" specialty="Cardiology"
-                               officename="Arlington Medical Center"
-                               address1="123 Main St."
-                               address2="Arlington, VA 22202"
-                               phone="555-555-5555"/>
+                               <Locationcard doctor={"Dr. " + doctor.Name + " " + doctor.Surname} specialty={doctor.Field}
+                               officename={doctor.OfficeName}
+                               address1={doctor.Address}
+                               hours={doctor.Hours}
+                               phone={doctor.PhoneNumber}/>
 
                             </div>
                             <div className="card-body">

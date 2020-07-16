@@ -15,6 +15,7 @@ $(document).ready(() => {
     const emailInput = $('input#email-input');
     const passwordInput = $('input#password-input');
     const doctor = $("input#customCheck1");
+    const address = $("input#address")
   
     // When the signup button is clicked,
     // we validate the email and password are not blank
@@ -28,7 +29,8 @@ $(document).ready(() => {
         PhoneNumber: pNumber.val().trim(),
         Email: emailInput.val().trim(),
         Password: passwordInput.val().trim(),
-        Doctor: doctor.val().trim()
+        Doctor: doctor.val().trim(),
+        Address: address.val().trim()
       };
   
       if (!userData.Email || !userData.Password) {
@@ -46,7 +48,7 @@ $(document).ready(() => {
 
       if (userData.Doctor === false) {
         console.log("Client");
-      signUpUser(userData.Name, userData.Surname, userData.DOB, userData.PhoneNumber, userData.Email, userData.Password, userData.Doctor);
+      signUpUser(userData.Name, userData.Surname, userData.DOB, userData.PhoneNumber, userData.Email, userData.Password, userData.Doctor,userData.Address);
       fNameInput.val('');
       mNameInput.val('');
       lNameInput.val('');
@@ -55,9 +57,10 @@ $(document).ready(() => {
       emailInput.val('');
       passwordInput.val('');
       doctor.val('');
+      address.val('');
       } else if (userData.Doctor === true) {
         console.log("Doctor");
-        signUpDoctor(userData.Name, userData.Surname, userData.DOB, userData.PhoneNumber, userData.Email, userData.Password, userData.Doctor);
+        signUpDoctor(userData.Name, userData.Surname, userData.DOB, userData.PhoneNumber, userData.Email, userData.Password, userData.Doctor,userData.Address);
         fNameInput.val('');
         mNameInput.val('');
         lNameInput.val('');
@@ -66,12 +69,13 @@ $(document).ready(() => {
         emailInput.val('');
         passwordInput.val('');
         doctor.val('');
+        address.val('');
       }
     });
   
     // Does a post to the signup route. If successful,
     // we are redirected to the members page Otherwise we log any errors
-    function signUpUser(Name, Surname, DOB, PhoneNumber, Email, Password, Doctor) {
+    function signUpUser(Name, Surname, DOB, PhoneNumber, Email, Password, Doctor, Address) {
       API.saveUser({
         Name,
         Surname,
@@ -79,7 +83,8 @@ $(document).ready(() => {
         PhoneNumber,
         Email,
         Password,
-        Doctor
+        Doctor,
+        Address
       })
       // eslint-disable-next-line no-unused-vars
           .then((data) => {
@@ -90,7 +95,7 @@ $(document).ready(() => {
           .catch(handleLoginErr);
     }
 
-    function signUpDoctor(Name, Surname, DOB, PhoneNumber, Email, Password, Doctor) {
+    function signUpDoctor(Name, Surname, DOB, PhoneNumber, Email, Password, Doctor, Address) {
     API.saveDoctor({
       Name,
       Surname,
@@ -98,7 +103,8 @@ $(document).ready(() => {
       PhoneNumber,
       Email,
       Password,
-      Doctor
+      Doctor,
+      Address
     })
     // eslint-disable-next-line no-unused-vars
         .then((data) => {
@@ -136,6 +142,11 @@ $(document).ready(() => {
                 <div className="form-group">
                     <label>Last name</label>
                     <input type="text" className="form-control" placeholder="Last name" id="last-name"/>
+                </div>
+
+                <div className="form-group">
+                    <label>Address</label>
+                    <input type="tel" className="form-control" placeholder="123 State St. Rochester, NY 14623" id="address" />
                 </div>
 
                 <div className="form-group">

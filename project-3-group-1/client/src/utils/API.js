@@ -24,5 +24,13 @@ export default {
   addPatient: function(id, patientID) {
     console.log("dhit")
     return axios.put("/api/doctor/" + id, patientID);
+  },
+  addDoctor: function(id, doctorID) {
+    console.log("phit")
+    return axios.put("/api/user/" + id, doctorID);
+  },
+  addExtend: function(id, docInfo) {
+    console.log("dhit")
+    return axios.put("/api/doctor/signup/" + id, docInfo);
   }
 };

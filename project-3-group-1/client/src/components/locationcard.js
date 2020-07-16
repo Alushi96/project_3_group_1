@@ -17,7 +17,7 @@ export default class Locationcard extends Component {
                 </td>
                 <td>{this.props.officename} <br/>
                 {this.props.address1} <br/>
-                {this.props.address2} <br/>
+                {this.props.hours} <br/>
                 {this.props.phone}</td>
               </tr>
             </tbody>

@@ -27,7 +27,7 @@ function DrDashboard() {
           .then(res => {
               if (res.data) {
               setUser(res.data);
-              if (res.data.dcdashboard){
+              if (res.data.patient){
                   setLoaded(true)
               }
               }
@@ -42,7 +42,7 @@ function DrDashboard() {
     
 
     function loadPatinets() {
-        API.getUser(user.dcdashboard[0])
+        API.getUser(user.patient[0])
         .then(res => setPatient(res.data))
         .catch(err => console.log(err))
     }
@@ -114,6 +114,10 @@ function DrDashboard() {
                             <a className="nav-link" href="/recordentry">
                                 <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
                                 Health Condition Search
+                            </a>
+                            <a className="nav-link" href="/signupextend">
+                                <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
+                                Settings
                             </a>
                         
                         </div>

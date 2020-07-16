@@ -19,8 +19,9 @@ module.exports = {
   },
   update: function(req, res) {
     var newdata = req.body
+    console.log(newdata.id)
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, newdata)
+    .findOneAndUpdate({ _id: req.params.id }, { $push: { doctor: newdata.id } }, { new: true })
       .then(dbModel => res.json(dbModel))
   },
   login: function(req, res) {

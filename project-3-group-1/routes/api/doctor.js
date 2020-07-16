@@ -12,4 +12,8 @@ router
   .get(DoctorController.findById)
   .put(DoctorController.update)
 
+
+router.route("/signup/:id")
+.put(DoctorController.signup)
+
 module.exports = router;

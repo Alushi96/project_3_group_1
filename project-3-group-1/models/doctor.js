@@ -9,10 +9,13 @@ const doctorSchema = new Schema({
   PhoneNumber: { type: Number, required: true },
   DOB: { type: String, required: true },
   Doctor: {type: Boolean, required: true},
-  // Address: { type: String, required: true },
+  Address: { type: String, required: true },
+  OfficeName: {type: String, required: false },
+  Field: {type: String, required: false},
+  Hours: {type: String, required: false },
   // type: { type: String, required: true },
   // appointmentdate: { type: Number, required: false },
-  dcdashboard: [
+  patient: [
     {
       type: Schema.Types.ObjectId,
       ref: "user"
