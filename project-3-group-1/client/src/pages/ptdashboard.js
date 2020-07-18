@@ -57,35 +57,22 @@ function PtDashboard() {
         <div>
            <div className="sb-nav-fixed">
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a className="navbar-brand" href="index.html">HealthApp</a>
+            <a className="navbar-brand" href="/ptdashboard">HealthApp</a>
             <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
             {/* <!-- Navbar Search--> */}
             <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div className="input-group">
-                    <input className="form-control" type="text" placeholder="Search for a Patient" aria-label="Search" aria-describedby="basic-addon2" />
-                    <div className="input-group-append">
-                        <button className="btn btn-primary" type="button"><i className="fas fa-search"></i></button>
-                    </div>
-                </div>
+            <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
             </form>
             {/* <!-- Navbar--> */}
-            <ul className="navbar-nav ml-auto ml-md-0">
-                <li className="nav-item dropdown">
-                    {/* <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-user fa-fw"></i></a> */}
-                    {/* <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown"> */}
-                 
-                        <a className="dropdown-item" onClick={logOut}>Logout</a>
-                    {/* </div> */}
-                </li>
-            </ul>
+           
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <nav className="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                     <div className="sb-sidenav-menu">
                         <div className="nav">
                             <div className="sb-sidenav-menu-heading">Menu</div>
-                            <a className="nav-link" href="index.html">
+                            <a className="nav-link" href="/ptdashboard">
                                 <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -107,7 +94,7 @@ function PtDashboard() {
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
                             <div className="sb-sidenav-menu-heading">Additional Features</div>
-                            <a className="nav-link" href="charts.html">
+                            <a className="nav-link" href="/pthealthsearch">
                                 <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
                                 Health Condition Search
                             </a>
@@ -161,11 +148,8 @@ function PtDashboard() {
                             </div>
                            <Actioncard title="Health Library Search" color="bg-danger"/>
                         </div>
-                        <div className="card mb-4">
-                            <div className="card-header">
-                                <i className="fas fa-table mr-1"></i>
-                               Details About Your Upcoming Appointment
-                               <Locationcard doctor={"Dr. " + doctor.Name + " " + doctor.Surname} specialty={doctor.Field}
+                      
+                               <Locationcard doctor={doctor.Name} specialty={doctor.Field}
                                officename={doctor.OfficeName}
                                address1={doctor.Address}
                                hours={doctor.Hours}
@@ -175,8 +159,8 @@ function PtDashboard() {
                             <div className="card-body">
                                 
                             </div>
-                        </div>
-                    </div>
+                        {/* </div>
+                    </div> */}
                 </main>
                 <footer className="py-4 bg-light mt-auto">
                     <div className="container-fluid">

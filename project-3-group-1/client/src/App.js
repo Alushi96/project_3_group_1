@@ -13,6 +13,7 @@ import SignupExtend from "./pages/signupextend";
 
 import PrivateRoute from './PrivateRoute';
 import { AuthContext } from "./context/auth";
+import PtHealthSearch from "./pages/pthealthsearch";
 
 
 function App(props) {
@@ -38,6 +39,8 @@ function App(props) {
             <PrivateRoute path="/ptdashboard" component={PtDashboard} />
             <PrivateRoute path="/patientSearch" component={PatientSearch} />
             <PrivateRoute path="/recordentry" component={Recordentry} />
+            <PrivateRoute path="/pthealthsearch" component={PtHealthSearch} />
+
 
     </Router>
     </AuthContext.Provider>
