@@ -54,5 +54,5 @@ export default class Healthcondition extends Component {
 
           </div>
     );
-  }
-}
+ }
+};

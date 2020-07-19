@@ -59,24 +59,24 @@ function DrDashboard() {
         return (
         <div>
            <div className="sb-nav-fixed">
-        <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a className="navbar-brand" href="/drdashboard">HealthApp</a>
-            <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
-            {/* <!-- Navbar Search--> */}
-            <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div className="input-group">
-               
-                </div>
-            </form>
-            {/* <!-- Navbar--> */}
-            <ul className="navbar-nav ml-auto ml-md-0">
-            <li className="nav-item dropdown">
-      
-                        <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
-                    {/* </div> */}
-                </li>
-            </ul>
-        </nav>
+                 <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                    <a className="navbar-brand" href="/drdashboard">HealthApp</a>
+                    <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
+                    {/* <!-- Navbar Search--> */}
+                    <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                        <div className="input-group">
+                    
+                        </div>
+                    </form>
+                    {/* <!-- Navbar--> */}
+                    <ul className="navbar-nav ml-auto ml-md-0">
+                    <li className="nav-item dropdown">
+            
+                                <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
+                            {/* </div> */}
+                        </li>
+                    </ul>
+                 </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -173,7 +173,7 @@ function DrDashboard() {
                                         <thead>
                                             <tr>
                                                 <th>First Name</th>
-                                                <th>Middle Name</th>
+                                              
                                                 <th>Last Name</th>
                                                 <th>DOB</th>
                                                 <th>Client ID</th>
@@ -184,7 +184,7 @@ function DrDashboard() {
                                         <tfoot>
                                             <tr>
                                                 <th>First Name</th>
-                                                <th>Middle Name</th>
+                                               
                                                 <th>Last Name</th>
                                                 <th>DOB</th>
                                                 <th>Client ID</th>
@@ -195,7 +195,7 @@ function DrDashboard() {
                                         <tbody>
                                             <tr>
                                                 <td>{patient.Name}</td>
-                                                <td>{patient.Surname}</td>
+                                              
                                                 <td>{patient.Surname}</td>
                                                 <td>{patient.DOB}</td>
                                                 <td>{patient._id}</td>
@@ -204,7 +204,7 @@ function DrDashboard() {
                                             </tr>
                                             <tr>
                                                 <td>Ashton</td>
-                                                <td>Q</td>
+                                               
                                                 <td>Cox</td>
                                                 <td>04/25/2021</td>
                                                 <td>07/11/2020</td>
@@ -213,7 +213,7 @@ function DrDashboard() {
                                             </tr>
                                             <tr>
                                                 <td>Cedric</td>
-                                                <td>Q</td>
+                                         
                                                 <td>Kelly</td>
                                                 <td>04/05/2011</td>
                                                 <td>07/11/2020</td>
@@ -222,7 +222,7 @@ function DrDashboard() {
                                             </tr>
                                             <tr>
                                                 <td>Airi</td>
-                                                <td>Q</td>
+                                            
                                                 <td>Satou</td>
                                                 <td>12/25/2011</td>
                                                 <td>07/11/2020</td>
@@ -231,7 +231,7 @@ function DrDashboard() {
                                             </tr>
                                             <tr>
                                                 <td>Brielle </td>
-                                                <td>Q</td>
+                                               
                                                 <td>Williamson</td>
                                                 <td>04/25/2001</td>
                                                 <td>07/11/2020</td>
@@ -240,7 +240,7 @@ function DrDashboard() {
                                             </tr>
                                             <tr>
                                                 <td>Herrod</td>
-                                                <td>Q</td>
+                                               
                                                 <td>Chandler</td>
                                                 <td>06/25/2011</td>
                                                 <td>07/11/2020</td>

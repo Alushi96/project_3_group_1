@@ -1,4 +1,6 @@
 import axios from "axios";
+const BASEURL = "https://health.gov/myhealthfinder/api/v3/topicsearch.json?lang=en&keyword=";
+
 
 export default {
   getUser: function(id) {
@@ -32,5 +34,8 @@ export default {
   addExtend: function(id, docInfo) {
     console.log("dhit")
     return axios.put("/api/doctor/signup/" + id, docInfo);
+  },
+  searchTerm: function(query) {
+    return axios.get(BASEURL + query);
   }
 };

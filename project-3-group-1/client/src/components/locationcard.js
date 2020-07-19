@@ -9,7 +9,7 @@ export default class Locationcard extends Component {
 
                 <br/>
                 <h4>Details About Your Upcoming Appointment</h4>
-                <table class="table ">
+                <table class="table">
                 <thead>
                     <tr>
                     
@@ -24,7 +24,7 @@ export default class Locationcard extends Component {
                        <tbody>
                         <tr>
 
-                        <td>{this.props.doctor}</td>
+                        <td>Dr. {this.props.doctor}</td>
                         <td>{this.props.officename}</td>
                         <td></td>
                         </tr>
