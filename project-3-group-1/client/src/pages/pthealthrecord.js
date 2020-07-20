@@ -47,52 +47,7 @@ function PatientSearch() {
                 {/* <!-- Navbar--> */}
                
             </nav>
-            {/* <div id="layoutSidenav"> */}
-                {/* <div id="layoutSidenav_nav"> */}
-                    {/* <nav className="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion"> */}
-                        {/* <div className="sb-sidenav-menu">
-                            <div className="nav">
-                                <div className="sb-sidenav-menu-heading">Menu</div>
-                                <a className="nav-link" href="/ptdashboard">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
-                                    Dashboard
-                                </a>
-                                <div className="sb-sidenav-menu-heading">Your Health</div>
-                                <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                                    My Appointments
-                                    <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                                </a>
-                                <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                    <nav className="sb-sidenav-menu-nested nav">
-                                        <a className="nav-link" href="layout-static.html">Schedule Appointment</a>
-                                        <a className="nav-link" href="layout-sidenav-light.html">Virtual Appointment</a>
-                                    </nav>
-                                </div>
-                                <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                                   My Health Record
-                                    <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                                </a>
-                                <div className="sb-sidenav-menu-heading">Additional Features</div>
-                                <a className="nav-link" href="/pthealthsearch">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
-                                    Health Condition Search
-                                </a>
-                            
-                            </div>
-                        </div> */}
-                        {/* <div className="sb-sidenav-footer">
-                            <div className="small">Logged in as:</div>
-                            {user.Name +" "+ user.Surname}
-                        </div>
-                        <div className="sb-sidenav-footer">
-                            <div className="small">Patient ID:</div>
-                            {user._id}
-                        </div> */}
-                    {/* </nav> */}
-                {/* </div> */}
-    
+        
     
                 <div id="layoutSidenav_content">
                 <main className="bg-light">
@@ -141,18 +96,18 @@ function PatientSearch() {
                             </div>
                         </div>
 
-                        <div className="card mb-4">
+                        <div className="card mb-4 m-4">
                             <div className="card-header">
                                 <i className="fas fa-table mr-1"></i>
-                               Medical History
+                                <h3>Medical History</h3>
                             </div>
-                            <p>Health Problems: {user.HealthProblems}</p>
+                            <p className="p-3">Health Problems: {user.HealthProblems}</p>
                             <br></br>
-                            <p>Medications: {user.Medications}</p>
+                            <p className="p-3">Medications: {user.Medications}</p>
                             <br></br>
-                            <p>Directives: {user.Directives}</p>
+                            <p className="p-3">Directives: {user.Directives}</p>
                             <br></br>
-                            <p>History: {user.History}</p>
+                            <p className="p-3">History: {user.History}</p>
                         </div>
                                 <div className="card-body py-5">
                                     

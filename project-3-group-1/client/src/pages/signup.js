@@ -177,7 +177,7 @@ $(document).ready(() => {
 
                 <button type="submit" id="subBtn" className="btn btn-primary btn-block">Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <a href="/sign-in">sign in?</a>
+                    Already registered <a href="/">sign in?</a>
                 </p>
             </form>
             </div>

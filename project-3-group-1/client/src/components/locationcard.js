@@ -32,8 +32,8 @@ export default class Locationcard extends Component {
 
                         <td>{this.props.specialty}</td>
                         <td>{this.props.address1}</td>
-                        <td><button type="button" class="btn btn-warning">Get Directions</button>
-                        </td>
+                        {/* <td><button type="button" class="btn btn-warning">Get Directions</button> */}
+                        {/* </td> */}
                         </tr>
                         <tr>
 
