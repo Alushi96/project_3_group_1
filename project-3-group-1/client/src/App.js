@@ -10,6 +10,10 @@ import PtDashboard from "./pages/ptdashboard";
 import Recordentry from "./pages/recordentry";
 import PatientSearch from "./pages/patientSearch";
 import SignupExtend from "./pages/signupextend";
+import PatientHealthRecord from "./pages/pthealthrecord";
+import DrAppointment from "./pages/drappointment";
+import DrApp from "./pages/drupapp";
+import PtApp from "./pages/ptuapp";
 
 import PrivateRoute from './PrivateRoute';
 import { AuthContext } from "./context/auth";
@@ -40,6 +44,10 @@ function App(props) {
             <PrivateRoute path="/patientSearch" component={PatientSearch} />
             <PrivateRoute path="/recordentry" component={Recordentry} />
             <PrivateRoute path="/pthealthsearch" component={PtHealthSearch} />
+            <PrivateRoute path="/pthealthrecord" component={PatientHealthRecord} />
+            <PrivateRoute path="/drappointment" component={DrAppointment} />
+            <PrivateRoute path="/drapp" component={DrApp} />
+            <PrivateRoute path="/ptapp" component={PtApp} />
 
 
     </Router>

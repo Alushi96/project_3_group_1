@@ -37,5 +37,19 @@ export default {
   },
   searchTerm: function(query) {
     return axios.get(BASEURL + query);
+  },
+  addMed: function(id, medInfo) {
+    console.log("Med");
+    return axios.put("/api/user/med/" + id, medInfo);
+  },
+  addApp: function(appInfo) {
+    console.log("App");
+    return axios.post("/api/app", appInfo);
+  },
+  findDA: function(id) {
+    return axios.get("/api/app/doc/" + id);
+  },
+  findPA: function(id) {
+    return axios.get("/api/app/pat/" + id);
   }
 };

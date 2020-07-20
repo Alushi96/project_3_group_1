@@ -12,4 +12,7 @@ router
   .get(UserController.findById)
   .put(UserController.update)
 
+router.route("/med/:id")
+.put(UserController.medical)
+
 module.exports = router;

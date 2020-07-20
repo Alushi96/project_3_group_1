@@ -2,39 +2,38 @@ const db = require("../models");
 
 module.exports = {
   findAll: function(req, res) {
-    db.User
+    db.Appointment
       .find(req.query)
       .then(dbModel => res.json(dbModel))
   },
   findById: function(req, res) {
-    db.User
+    db.Appointment
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))   
   },
   create: function(req, res) {
       var newdata = req.body
-    db.User
+    db.Appointment
       .create(newdata)
       .then(dbModel => res.json(dbModel))
   },
   update: function(req, res) {
     var newdata = req.body
     console.log(newdata.id)
-    db.User
+    db.Appointment
     .findOneAndUpdate({ _id: req.params.id }, { $push: { doctor: newdata.id } }, { new: true })
       .then(dbModel => res.json(dbModel))
   },
-  login: function(req, res) {
-    db.User
-      .find({Email: req.body.userName, Password: req.body.password})
-      .then(dbModel => res.json(dbModel))
-  },
-  medical: function(req, res) {
-    var newdata = req.body
+  findDocApp: function(req, res) {
     console.log(req.params.id)
-    console.log(newdata);
-    db.User
-      .findOneAndUpdate({ _id: req.params.id }, newdata)
-      .then(dbModel => res.json(dbModel))
+    db.Appointment
+    .find({DoctorID: req.params.id})
+    .then(dbModel => res.json(dbModel))
+  },
+  findPatApp: function(req, res) {
+    console.log(req.params.id)
+    db.Appointment
+    .find({PatientID: req.params.id})
+    .then(dbModel => res.json(dbModel))
   }
 };

@@ -10,6 +10,10 @@ const userSchema = new Schema({
   DOB: { type: String, required: true },
   Doctor: {type: Boolean, required: true},
   Address: { type: String, required: true },
+  HealthProblems: {type: String, required: false},
+  Medications: {type: String, required: false},
+  Directives: {type: String, required: false},
+  History: {type: String, required: false},
   // type: { type: String, required: true },
   // appointmentdate: { type: Number, required: false }
   doctor: [

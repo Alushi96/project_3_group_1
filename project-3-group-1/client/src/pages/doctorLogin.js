@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import DrDashboard from "./drdashboard";
 import API from "../utils/API";
 
 import { useAuth } from "../context/auth";
@@ -16,7 +15,6 @@ function Login(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { setAuthTokens } = useAuth();
-  const referer = '/';
 
 
   function postLogin() {

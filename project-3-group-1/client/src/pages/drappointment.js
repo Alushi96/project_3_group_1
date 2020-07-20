@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Actioncard from "../components/actioncard";
 import API from "../utils/API";
 import { useAuth } from "../context/auth";
+import $ from "jquery";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
@@ -10,29 +12,6 @@ function PatientSearch() {
 
     const existingTokens = JSON.parse(localStorage.getItem("tokens"));
     const doctorID = existingTokens;
-
-    const [id, setID] = useState("");
-    const [patient, setPatient] = useState([]);
-
-    const patientData = {
-        id: doctorID
-    };
-
-    function postSubmit() {
-        API.getUser(id)
-          .then(res => setPatient(res.data))
-          .catch(err => console.log(err));
-
-    }
-
-    function postAdd() {
-        API.addPatient(doctorID, patient)
-        .catch(err => console.log(err))
-
-        API.addDoctor(patient._id, patientData)
-        .catch(err => console.log(err))
-
-    }
 
     const [user, setUser] = useState([])
 
@@ -48,6 +27,35 @@ function PatientSearch() {
 
     };
 
+    const id = $("input#id-input");
+    const appDate = $("input#app-input")
+    const pname = $("input#name-input")
+
+    function postSubmit() {
+        const appData = {
+            PatientID: id.val().trim(),
+            PatientName:pname.val().trim(),
+            DoctorID: doctorID,
+            DoctorName: user.Name,
+            Appointment: appDate.val().trim()
+        };
+
+        subApp(appData.PatientID, appData.PatientName, appData.DoctorID, appData.DoctorName, appData.Appointment);
+    }
+
+    function subApp(PatientID, PatientName, DoctorID, DoctorName, Appointment) {
+        API.addApp({
+            PatientID,
+            PatientName,
+            DoctorID,
+            DoctorName,
+            Appointment
+        })
+    }
+
+
+
+
 
     const { setAuthTokens } = useAuth();
       
@@ -61,17 +69,25 @@ function PatientSearch() {
         <div>
            <div className="sb-nav-fixed">
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a className="navbar-brand" href="/drdashboard">HealthApp</a>
+            <a className="navbar-brand" href="index.html">HealthApp</a>
             <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
             {/* <!-- Navbar Search--> */}
             <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div className="input-group">
+                    <input className="form-control" type="text" placeholder="Search for a Patient" aria-label="Search" aria-describedby="basic-addon2" />
+                    <div className="input-group-append">
+                        <button className="btn btn-primary" type="button"><i className="fas fa-search">Search</i></button>
+                    </div>
                 </div>
             </form>
             {/* <!-- Navbar--> */}
             <ul className="navbar-nav ml-auto ml-md-0">
             <li className="nav-item dropdown">
-                    <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
+                    {/* <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-user fa-fw"></i></a> */}
+                    {/* <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown"> */}
+                 
+                        <a className="dropdown-item" onClick={logOut}>Logout</a>
+                    {/* </div> */}
                 </li>
             </ul>
         </nav>
@@ -154,37 +170,30 @@ function PatientSearch() {
                            <Actioncard title="Health Search Term" color="bg-danger"/>
                         </div>
                         <div className="card mb-4">
-                            <div className="card-header pl-3">
-                                <i className="fas fa-table mr-2"></i>
-                                <h4>Patient Search</h4>
+                            <div className="card-header">
+                                <i className="fas fa-table mr-1"></i>
+                               Patient Search
                             </div>
                             <form>
 
-                            <div className="form-group p-3">
-                                <p>Patient ID</p>
-                                <input type="id" value={id} className="form-control" placeholder="Enter Patient ID" id="id-input" onChange={e => {setID(e.target.value);}}/>
-                               <div className="p-3">
-                                <button type="button" className="btn btn-primary btn-block" id="subBtn" onClick={postSubmit}>Submit</button>
-                                </div>
+                            <div className="form-group">
+                                <label>Patient ID</label>
+                                <input type="id" className="form-control" placeholder="Enter Patient ID" id="id-input" />
                             </div>
 
+                            <div className="form-group">
+                                <label>Patient Name</label>
+                                <input type="id" className="form-control" placeholder="Enter Patient Name" id="name-input" />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Apointment Date</label>
+                                <input type="date" className="form-control" placeholder="MM/DD/YYYY" id="app-input"/>
+                            </div>
+
+                            <button type="button" className="btn btn-primary btn-block" id="subBtn" onClick={postSubmit}>Submit</button>
 
                             </form>
-                        </div>
-                        <div className="card mb-4">
-                            <div className="card-header">
-                                <i className="fas fa-table mr-1"></i>
-                                <h5> Patient Details</h5>
-                            </div>
-                            <div className="p-3">
-
-                            <p>Patient ID: {patient._id}</p>
-                            <p>Name: {patient.Name+" "+patient.Surname}</p>
-                            <p>DOB: {patient.DOB}</p>
-                            <p>Email: {patient.Email}</p>
-                            <p>Phone Number: {patient.PhoneNumber}</p>
-                            <button type="button" className="btn btn-primary btn-block" id="subBtn" onClick={postAdd}>Add Patient</button>
-                        </div>
                         </div>
                     </div>
                 </main>

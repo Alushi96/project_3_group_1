@@ -1,5 +1,5 @@
 module.exports = {
     User: require("./user"),
-    Dcdashboard: require("./dcdashboard"),
+    Appointment: require("./dcdashboard"),
     Doctor: require("./doctor")
   };

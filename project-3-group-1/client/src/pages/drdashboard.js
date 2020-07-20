@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Actioncard from "../components/actioncard";
 import API from "../utils/API";
 import { useAuth } from "../context/auth";
+import $ from "jquery";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -11,8 +12,7 @@ function DrDashboard() {
     const [isLoaded, setLoaded] = useState(false);
     const [user, setUser] = useState([])
     const [patient, setPatient] = useState([])
-    let flag = true;
-
+    const tbody = $("#tbody");
 
     useEffect(() => {
         loadUser()
@@ -42,9 +42,28 @@ function DrDashboard() {
     
 
     function loadPatinets() {
-        API.getUser(user.patient[0])
-        .then(res => setPatient(res.data))
-        .catch(err => console.log(err))
+
+
+        for (var i = 0; i < user.patient.length; i++) {
+            console.log(user.patient[i])
+
+            API.getUser(user.patient[i])
+            .then(res => {
+            
+
+            var tr = $("<tr>")
+            var name = $("<td>").text(res.data.Name + " " + res.data.Surname)
+            var dob = $("<td>").text(res.data.DOB)
+            var _id = $("<td>").text(res.data._id)
+            var email = $("<td>").text(res.data.Email)
+            var numb = $("<td>").text(res.data.PhoneNumber)
+
+            tr.append(name, dob, _id, email, numb);
+            tbody.append(tr);
+            console.log(tbody)
+            })
+            .catch(err => console.log(err))
+        }
     }
     
 
@@ -59,24 +78,24 @@ function DrDashboard() {
         return (
         <div>
            <div className="sb-nav-fixed">
-                 <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-                    <a className="navbar-brand" href="/drdashboard">HealthApp</a>
-                    <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
-                    {/* <!-- Navbar Search--> */}
-                    <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                        <div className="input-group">
-                    
-                        </div>
-                    </form>
-                    {/* <!-- Navbar--> */}
-                    <ul className="navbar-nav ml-auto ml-md-0">
-                    <li className="nav-item dropdown">
-            
-                                <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
-                            {/* </div> */}
-                        </li>
-                    </ul>
-                 </nav>
+        <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a className="navbar-brand" href="/drdashboard">HealthApp</a>
+            <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
+            {/* <!-- Navbar Search--> */}
+            <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div className="input-group">
+               
+                </div>
+            </form>
+            {/* <!-- Navbar--> */}
+            <ul className="navbar-nav ml-auto ml-md-0">
+            <li className="nav-item dropdown">
+      
+                        <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
+                    {/* </div> */}
+                </li>
+            </ul>
+        </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -88,7 +107,7 @@ function DrDashboard() {
                                 Dashboard
                             </a>
                             <div className="sb-sidenav-menu-heading">Interface</div>
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a className="nav-link collapsed" href="/drappointment" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
                                 Schedule
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
@@ -146,7 +165,7 @@ function DrDashboard() {
                                 <div className="card bg-warning text-white mb-4">
                                     <div className="card-body">Upcoming Appointments</div>
                                     <div className="card-footer d-flex align-items-center justify-content-between">
-                                        <a className="small text-white stretched-link" href="#">View Details</a>
+                                        <a className="small text-white stretched-link" href="/drapp">View Details</a>
                                         <div className="small text-white"><i className="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -155,7 +174,7 @@ function DrDashboard() {
                                 <div className="card bg-success text-white mb-4">
                                     <div className="card-body">Schedule Appointment</div>
                                     <div className="card-footer d-flex align-items-center justify-content-between">
-                                        <a className="small text-white stretched-link" href="#">View Details</a>
+                                        <a className="small text-white stretched-link" href="/drappointment">View Details</a>
                                         <div className="small text-white"><i className="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -172,9 +191,7 @@ function DrDashboard() {
                                     <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                         <thead>
                                             <tr>
-                                                <th>First Name</th>
-                                              
-                                                <th>Last Name</th>
+                                                <th>Name</th>
                                                 <th>DOB</th>
                                                 <th>Client ID</th>
                                                 <th>Email</th>
@@ -183,70 +200,14 @@ function DrDashboard() {
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>First Name</th>
-                                               
-                                                <th>Last Name</th>
+                                                <th>Name</th>
                                                 <th>DOB</th>
                                                 <th>Client ID</th>
                                                 <th>Email</th>
                                                 <th>Phone Number</th>
                                             </tr>
                                         </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td>{patient.Name}</td>
-                                              
-                                                <td>{patient.Surname}</td>
-                                                <td>{patient.DOB}</td>
-                                                <td>{patient._id}</td>
-                                                <td>{patient.Email}</td>
-                                                <td>{patient.PhoneNumber}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ashton</td>
-                                               
-                                                <td>Cox</td>
-                                                <td>04/25/2021</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cedric</td>
-                                         
-                                                <td>Kelly</td>
-                                                <td>04/05/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Airi</td>
-                                            
-                                                <td>Satou</td>
-                                                <td>12/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brielle </td>
-                                               
-                                                <td>Williamson</td>
-                                                <td>04/25/2001</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Herrod</td>
-                                               
-                                                <td>Chandler</td>
-                                                <td>06/25/2011</td>
-                                                <td>07/11/2020</td>
-                                                <td>tnixon@gmail.com</td>
-                                                <td>595-030-3939</td>
-                                            </tr>
+                                        <tbody id="tbody">
                                         </tbody>
                                     </table>
                                 </div>

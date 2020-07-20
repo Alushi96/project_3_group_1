@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 
-const dcdashboardSchema = new Schema({
-    helthproblems: String,
-    medications: String,
-    directives: String,
-    patientsearch: String,
-    history: String,
+const appointmentSchema = new Schema({
+  PatientID: {type: String, required: true},
+  PatientName: {type: String, required: true},
+  DoctorID: {type: String, required: true},
+  DoctorName: {type:String, required: true},
+  Appointment: {type: String, required: true}
   });
   
-  const Dcdashboard = mongoose.model("Dcdashboard", dcdashboardSchema);
+  const Appointment = mongoose.model("Appointment", appointmentSchema);
   
-  module.exports = Dcdashboard;
+  module.exports = Appointment;
