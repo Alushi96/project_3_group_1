@@ -53,17 +53,17 @@ export default class Healthcondition extends Component {
         <br />
 
             {this.state.resources.map((resource, index) => 
-             <div class="card p-5 m-5">
-                <div class="row" key={index}>
-                    <div class="row">
-                      <div class="col-8">
+             <div className="card p-5 m-5">
+                <div className="row" key={index}>
+                    <div className="row">
+                      <div className="col-8">
                        
                         <h4>{resource.Title}</h4><br/><br/>
                         <a href={resource.AccessibleVersion} target="_blank" >
-                          <button type="button" class="btn btn-success">More Information</button></a>
+                          <button type="button" className="btn btn-success">More Information</button></a>
                       </div>
 
-                      <div class="col-4"> 
+                      <div className="col-4"> 
                         <img alt={resource.ImageAlt} className="img-fluid" src={resource.ImageUrl} style={{ margin: "0 auto" }} />
                       </div>
                       </div>
