@@ -69,28 +69,28 @@ function SignUp() {
             <div>
             <div className="sb-nav-fixed">
             <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-                    <a className="navbar-brand" href="/drdashboard">HealthApp</a>
-                    <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
-                    {/* <!-- Navbar Search--> */}
-                    <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                        <div className="input-group">
-                    
-                        </div>
-                    </form>
-                    {/* <!-- Navbar--> */}
-                    <ul className="navbar-nav ml-auto ml-md-0">
-                    <li className="nav-item dropdown">
-            
-                                <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
-                            {/* </div> */}
-                        </li>
-                    </ul>
-                 </nav>
+            <a className="navbar-brand" href="/drdashboard">HealthApp</a>
+            <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
+            {/* <!-- Navbar Search--> */}
+            <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div className="input-group">
+               
+                </div>
+            </form>
+            {/* <!-- Navbar--> */}
+            <ul className="navbar-nav ml-auto ml-md-0">
+            <li className="nav-item dropdown">
+      
+                        <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
+                    {/* </div> */}
+                </li>
+            </ul>
+        </nav>
          <div id="layoutSidenav">
              <div id="layoutSidenav_nav">
-                 <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                     <div className="sb-sidenav-menu">
-                     <div className="nav">
+             <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div className="sb-sidenav-menu">
+                        <div className="nav">
                             <div className="sb-sidenav-menu-heading">Menu</div>
                             <a className="nav-link" href="/drdashboard">
                                 <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
@@ -110,22 +110,36 @@ function SignUp() {
                             </div>
                             <a className="nav-link collapsed" href="/recordentry" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                               Medical Records
+                                Medical Records
+  
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
-                            <div className="sb-sidenav-menu-heading">Additional Features</div>
+
+                            <a className="nav-link collapsed" href="/drzoom" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
+                                Start Meeting
+  
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            <div className="sb-sidenav-menu-heading">Tools</div>
+                      
+                            
                             <a className="nav-link" href="/signupextend">
                                 <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
                                 Settings
                             </a>
                         
                         </div>
-                     </div>
-                     <div className="sb-sidenav-footer">
-                         <div className="small">Logged in as:</div>
-                         Dr. {user.Name +" "+ user.Surname}
-                     </div>
-                 </nav>
+                    </div>
+                    <div className="sb-sidenav-footer">
+                        <div className="small">Logged in as:</div>
+                        Dr. {user.Name +" "+ user.Surname}
+                    </div>
+                    <div className="sb-sidenav-footer">
+                        <div className="small">Doctor ID:</div>
+                        {user._id}
+                    </div>
+                </nav>
              </div>
              <div id="layoutSidenav_content">
                  <main className="bg-light">
@@ -162,26 +176,34 @@ function SignUp() {
                                     </div>
                                 </div>
                             </div>
-                           <Actioncard title="Health Search Term" color="bg-danger"/>
+                            <div className="col-xl-3 col-md-6">
+                                <div className="card bg-info text-white mb-4">
+                                    <div className="card-body">Start Virtual Appointment</div>
+                                    <div className="card-footer d-flex align-items-center justify-content-between">
+                                        <a className="small text-white stretched-link" href="/drzoom">View Details</a>
+                                        <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>    
                         </div>
                          <div className="card mb-4">
                              <div className="card-header">
                                  <i className="fas fa-table mr-1"></i>
-                                Update Info
+                                <h3>Update Information</h3>
                              </div>
                              <form>
  
-                             <div className="form-group">
+                             <div className="form-group p-3">
                                  <label>Office Name</label>
                                  <input type="name" className="form-control" placeholder="Alexandria Hospital" id="officeName"/>
                              </div>
 
-                             <div className="form-group">
+                             <div className="form-group p-3">
                                  <label>Field Of Expertise</label>
                                  <input type="name" className="form-control" placeholder="Cardiology" id="field"/>
                              </div>
 
-                             <div className="form-group">
+                             <div className="form-group p-3">
                                  <label>Hours of Operation</label>
                                  <input type="name" className="form-control" placeholder="Monday - Friday 9am - 7pm" id="hours"/>
                              </div>

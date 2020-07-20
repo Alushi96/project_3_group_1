@@ -186,7 +186,16 @@ function DrDashboard() {
                                     </div>
                                 </div>
                             </div>
-                           <Actioncard title="Health Search Term" color="bg-danger"/>
+                            <div className="col-xl-3 col-md-6">
+                                <div className="card bg-info text-white mb-4">
+                                    <div className="card-body">Start Virtual Appointment</div>
+                                    <div className="card-footer d-flex align-items-center justify-content-between">
+                                        <a className="small text-white stretched-link" href="/drzoom">View Details</a>
+                                        <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                      
                         </div>
                         <div className="card mb-4">
                             <div className="card-header">

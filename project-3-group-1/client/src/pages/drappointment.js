@@ -68,34 +68,29 @@ function PatientSearch() {
         return (
         <div>
            <div className="sb-nav-fixed">
-        <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a className="navbar-brand" href="index.html">HealthApp</a>
+           <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a className="navbar-brand" href="/drdashboard">HealthApp</a>
             <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
             {/* <!-- Navbar Search--> */}
             <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div className="input-group">
-                    <input className="form-control" type="text" placeholder="Search for a Patient" aria-label="Search" aria-describedby="basic-addon2" />
-                    <div className="input-group-append">
-                        <button className="btn btn-primary" type="button"><i className="fas fa-search">Search</i></button>
-                    </div>
+               
                 </div>
             </form>
             {/* <!-- Navbar--> */}
             <ul className="navbar-nav ml-auto ml-md-0">
             <li className="nav-item dropdown">
-                    {/* <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-user fa-fw"></i></a> */}
-                    {/* <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown"> */}
-                 
-                        <a className="dropdown-item" onClick={logOut}>Logout</a>
+      
+                        <button className="btn btn-primary" type="button" onClick={logOut}>Logout</button>
                     {/* </div> */}
                 </li>
             </ul>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div className="sb-sidenav-menu">
-                    <div className="nav">
+                        <div className="nav">
                             <div className="sb-sidenav-menu-heading">Menu</div>
                             <a className="nav-link" href="/drdashboard">
                                 <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
@@ -115,10 +110,20 @@ function PatientSearch() {
                             </div>
                             <a className="nav-link collapsed" href="/recordentry" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                               Medical Records
+                                Medical Records
+  
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
-                            <div className="sb-sidenav-menu-heading">Additional Features</div>
+
+                            <a className="nav-link collapsed" href="/drzoom" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
+                                Start Meeting
+  
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
+                            <div className="sb-sidenav-menu-heading">Tools</div>
+                      
+                            
                             <a className="nav-link" href="/signupextend">
                                 <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
                                 Settings
@@ -129,6 +134,10 @@ function PatientSearch() {
                     <div className="sb-sidenav-footer">
                         <div className="small">Logged in as:</div>
                         Dr. {user.Name +" "+ user.Surname}
+                    </div>
+                    <div className="sb-sidenav-footer">
+                        <div className="small">Doctor ID:</div>
+                        {user._id}
                     </div>
                 </nav>
             </div>
@@ -167,27 +176,34 @@ function PatientSearch() {
                                     </div>
                                 </div>
                             </div>
-                           <Actioncard title="Health Search Term" color="bg-danger"/>
-                        </div>
+                            <div className="col-xl-3 col-md-6">
+                                <div className="card bg-info text-white mb-4">
+                                    <div className="card-body">Start Virtual Appointment</div>
+                                    <div className="card-footer d-flex align-items-center justify-content-between">
+                                        <a className="small text-white stretched-link" href="/drzoom">View Details</a>
+                                        <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>                        </div>
                         <div className="card mb-4">
-                            <div className="card-header">
-                                <i className="fas fa-table mr-1"></i>
-                               Patient Search
+                            <div className="card-header pl-3">
+                                <i className="fas fa-table mr-2"></i>
+                             <h3>Patient Search</h3>  
                             </div>
                             <form>
 
-                            <div className="form-group">
-                                <label>Patient ID</label>
+                            <div className="form-group p-3">
+                                <p><strong>Patient ID</strong></p>
                                 <input type="id" className="form-control" placeholder="Enter Patient ID" id="id-input" />
                             </div>
 
-                            <div className="form-group">
-                                <label>Patient Name</label>
+                            <div className="form-group p-3">
+                                <p><strong>Patient Name</strong></p>
                                 <input type="id" className="form-control" placeholder="Enter Patient Name" id="name-input" />
                             </div>
 
-                            <div className="form-group">
-                                <label>Apointment Date</label>
+                            <div className="form-group p-3">
+                                <p><strong>Appointment Date</strong></p>
                                 <input type="date" className="form-control" placeholder="MM/DD/YYYY" id="app-input"/>
                             </div>
 
