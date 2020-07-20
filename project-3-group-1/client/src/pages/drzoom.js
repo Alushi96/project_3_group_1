@@ -1,16 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import Actioncard from "../components/actioncard";
 import Locationcard from "../components/locationcard";
+import { ZoomMtg } from '@zoomus/websdk';
 import API from "../utils/API";
+import $ from "jquery";
 import { useAuth } from "../context/auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+var signatureEndpoint = 'http://localhost:4000/'
+var apiKey = 'rCTS33F9QzaWz2z_KtB2MA'
+const API_KEY = "rCTS33F9QzaWz2z_KtB2MA";
+const API_SECRET = "rI2T6cwPVk9rWd4BxSQufKpsOunvJvH7mjWU";
+var meetingNumber = "3356527600"
+var role = "1"
+var leaveUrl = 'http://localhost:3000/drzoom'
+var userName = 'WebSDK'
+var userEmail = ''
+var passWord = '5HYqGY'
+var signa;
+
+const signature = ZoomMtg.generateSignature({
+    meetingNumber: meetingNumber,
+    apiKey: API_KEY,
+    apiSecret: API_SECRET,
+    role: role,
+    success: function (res) {
+      console.log(res.result);
+      signa = res.result;
+    },
+  });
+
+
+
+let zoomMeeting = document.getElementById("zmmtg-root").style.display="none";
+
 
 
 function PtDashboard() {
 
     const [user, setUser] = useState([])
-    const [isLoaded, setLoaded] = useState(false);
-    const [doctor, setDoctor] = useState([])
 
     useEffect(() => {
         loadUser()
@@ -21,31 +50,57 @@ function PtDashboard() {
         const existingTokens = JSON.parse(localStorage.getItem("tokens"));
         var id = existingTokens;
 
-        API.getUser(id)
-        //   .then(res => console.log(res))
-          .then(res => {
-              if (res.data) {
-              setUser(res.data);
-                if(res.data.doctor) {
-                    setLoaded(true)
-                }
-            }
-            
-          })
+        API.getDoctor(id)
+          .then(res => {setUser(res.data)})
           .catch(err => console.log(err));
 
       };
 
-      if (isLoaded) {
-          loadDoctors();
-          setLoaded(false)
-      }
+      function zoomCall() {
 
-      function loadDoctors() {
-          API.getDoctor(user.doctor[0])
-          .then(res => setDoctor(res.data))
-          .catch(err => console.log(err))
-      }
+        zoomMeeting = document.getElementById("zmmtg-root").style.display="block";
+    
+        console.log("hi");
+        ZoomMtg.setZoomJSLib('https://source.zoom.us/1.7.9/lib', '/av');
+    
+    
+            ZoomMtg.preLoadWasm();
+            ZoomMtg.prepareJssdk();
+    
+    
+    
+    
+    
+    ZoomMtg.init({
+        leaveUrl: leaveUrl,
+        isSupportAV: true,
+        success: (success) => {
+          console.log(success)
+      
+          ZoomMtg.join({
+            signature: signature,
+            apiKey: apiKey,
+            meetingNumber: meetingNumber,
+            userName: userName,
+            userEmail: userEmail,
+            passWord: passWord,
+            success: (success) => {
+              console.log("Success")
+            },
+            error: (error) => {
+              console.log(error)
+            }
+          })
+      
+        },
+        error: (error) => {
+          console.log(error)
+        }
+      })
+    
+    }
+      
+
         const { setAuthTokens } = useAuth();
       
         function logOut() {
@@ -67,53 +122,6 @@ function PtDashboard() {
             {/* <!-- Navbar--> */}
            
         </nav>
-        {/* <div id="layoutSidenav"> */}
-            {/* <div id="layoutSidenav_nav"> */}
-                {/* <nav className="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion"> */}
-                    {/* <div className="sb-sidenav-menu">
-                        <div className="nav">
-                            <div className="sb-sidenav-menu-heading">Menu</div>
-                            <a className="nav-link" href="/ptdashboard">
-                                <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
-                            <div className="sb-sidenav-menu-heading">Your Health</div>
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                                My Appointments
-                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                            </a>
-                            <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav className="sb-sidenav-menu-nested nav">
-                                    <a className="nav-link" href="layout-static.html">Schedule Appointment</a>
-                                    <a className="nav-link" href="layout-sidenav-light.html">Virtual Appointment</a>
-                                </nav>
-                            </div>
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                               My Health Record
-                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                            </a>
-                            <div className="sb-sidenav-menu-heading">Additional Features</div>
-                            <a className="nav-link" href="/pthealthsearch">
-                                <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
-                                Health Condition Search
-                            </a>
-                        
-                        </div>
-                    </div> */}
-                    {/* <div className="sb-sidenav-footer">
-                        <div className="small">Logged in as:</div>
-                        {user.Name +" "+ user.Surname}
-                    </div>
-                    <div className="sb-sidenav-footer">
-                        <div className="small">Patient ID:</div>
-                        {user._id}
-                    </div> */}
-                {/* </nav> */}
-            {/* </div> */}
-
-
             <div id="layoutSidenav_content">
             <main className="bg-light">
                     <div className="container-fluid bg-light">
@@ -143,7 +151,7 @@ function PtDashboard() {
                                 <div className="card bg-warning text-white mb-4">
                                     <div className="card-body">Begin Your Virtual Visit</div>
                                     <div className="card-footer d-flex align-items-center justify-content-between">
-                                        <a className="small text-white stretched-link" href="/ptzoom">View Details</a>
+                                        <a className="small text-white stretched-link" href="#">View Details</a>
                                         <div className="small text-white"><i className="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -160,11 +168,8 @@ function PtDashboard() {
                            <Actioncard title="Health Library Search" color="bg-danger"/>
                         </div>
                       
-                               <Locationcard doctor={doctor.Name} specialty={doctor.Field}
-                               officename={doctor.OfficeName}
-                               address1={doctor.Address}
-                               hours={doctor.Hours}
-                               phone={doctor.PhoneNumber}/>
+                        <button type="submit" className="btn btn-primary" id="join_iframe" onClick={zoomCall}>Start Meeting</button> 
+
 
                             </div>
                             <div className="card-body py-5">

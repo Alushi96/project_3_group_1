@@ -124,6 +124,13 @@ function DrDashboard() {
   
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </a>
+
+                            <a className="nav-link collapsed" href="/drzoom" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
+                                Start Meeting
+  
+                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                            </a>
                             <div className="sb-sidenav-menu-heading">Tools</div>
                       
                             
