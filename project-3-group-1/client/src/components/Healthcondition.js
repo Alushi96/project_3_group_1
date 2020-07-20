@@ -1,58 +1,76 @@
 import React, { Component } from "react";
+import "../css/Search.css";
 
 
 export default class Healthcondition extends Component {
 
-    state = {
-        loading: true,
-        resources: null
-      };
+  state = {
+    searchValue: "",
+    resources: []
+  };
+
+  handleOnChange = event => {
+    this.setState({ searchValue: event.target.value });
+  };
+
+  handleSearch = () => {
+    this.makeApiCall(this.state.searchValue);
+  };
+
+  makeApiCall = searchInput => {
+    var searchUrl = `https://health.gov/myhealthfinder/api/v3/topicsearch.json?lang=en&keyword=${searchInput}`;
+    fetch(searchUrl)
+      .then(response => {
+        return response.json();
+      })
+      .then(jsonData => {
+        this.setState({ resources: jsonData.Result.Resources.Resource });
+        console.log(jsonData)
+      });
+
   
-      async componentDidMount() {
-        const url = "https://health.gov/myhealthfinder/api/v3/topicsearch.json?lang=en&keyword=cancer";
-        const response = await fetch(url);
-        const data = await response.json();
-
-       this.setState({ resources: data.Result.Resources.Resource, loading: false });
-
-        var test = data.Result.Resources.Resource;
-        console.log("test", test);
-        test.map(resources => {
-          console.log("Resources.Title: ", resources.Title);
-          console.log("Resources.imageurl: ", resources.ImageUrl);
-        })
 
       };
 
       
   render() {
-    if (this.state.loading) {
-      return <div>loading...</div>;
-    }
 
-    if (!this.state.resources) {
-      return <div>didn't get a resource</div>
-    }
 
     return (
 
-        
+  
+      <div id="main">
+        <h1>Search a Health Topic</h1>
+        <input
+          name="text"
+          type="text"
+          placeholder="Search"
+          onChange={event => this.handleOnChange(event)}
+          value={this.state.searchValue}
+        />
+        <button onClick={this.handleSearch}>Search</button>
+        <br />
+        <br />
 
-
-          <div>
-            {this.state.resources.map(resource => 
-                <div>
-                    <hr/>
+            {this.state.resources.map((resource, index) => 
+             <div class="card p-5 m-5">
+                <div class="row" key={index}>
                     <div class="row">
-                    <div class="col-8"><h4>{resource.Title}</h4></div>
-                    <div class="col-4"> <img alt={resource.ImageAlt} className="img-fluid" src={resource.ImageUrl} style={{ margin: "0 auto" }} />
-                    </div>
-                    </div>
+                      <div class="col-8">
+                       
+                        <h4>{resource.Title}</h4><br/><br/>
+                        <a href={resource.AccessibleVersion} target="_blank" >
+                          <button type="button" class="btn btn-success">More Information</button></a>
+                      </div>
 
+                      <div class="col-4"> 
+                        <img alt={resource.ImageAlt} className="img-fluid" src={resource.ImageUrl} style={{ margin: "0 auto" }} />
+                      </div>
+                      </div>
+                    </div>
             </div>
             )}
-
-          </div>
+      </div>
     );
  }
 };

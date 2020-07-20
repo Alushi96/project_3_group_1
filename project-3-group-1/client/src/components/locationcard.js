@@ -5,7 +5,7 @@ export default class Locationcard extends Component {
 
     render() {
         return (
-            <div className="card mb-4">
+            <div className="card mb-4 pl-4">
 
                 <br/>
                 <h4>Details About Your Upcoming Appointment</h4>

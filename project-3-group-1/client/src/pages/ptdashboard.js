@@ -54,6 +54,7 @@ function PtDashboard() {
 
 
         return (
+            <div className="pt-5 bg-white">
         <div>
            <div className="sb-nav-fixed">
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -66,10 +67,10 @@ function PtDashboard() {
             {/* <!-- Navbar--> */}
            
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav className="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-                    <div className="sb-sidenav-menu">
+        {/* <div id="layoutSidenav"> */}
+            {/* <div id="layoutSidenav_nav"> */}
+                {/* <nav className="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion"> */}
+                    {/* <div className="sb-sidenav-menu">
                         <div className="nav">
                             <div className="sb-sidenav-menu-heading">Menu</div>
                             <a className="nav-link" href="/ptdashboard">
@@ -100,23 +101,33 @@ function PtDashboard() {
                             </a>
                         
                         </div>
-                    </div>
-                    <div className="sb-sidenav-footer">
+                    </div> */}
+                    {/* <div className="sb-sidenav-footer">
                         <div className="small">Logged in as:</div>
                         {user.Name +" "+ user.Surname}
                     </div>
                     <div className="sb-sidenav-footer">
                         <div className="small">Patient ID:</div>
                         {user._id}
-                    </div>
-                </nav>
-            </div>
+                    </div> */}
+                {/* </nav> */}
+            {/* </div> */}
+
+
             <div id="layoutSidenav_content">
             <main className="bg-light">
                     <div className="container-fluid bg-light">
-                        <h1 className="mt-4">Patient Dashboard</h1>
+                    <h5 className="mt-4 pt-5 float-right pr-4">           <div className="sb-sidenav-footer">
+                        <div className="small">Logged in as:</div>
+                        {user.Name +" "+ user.Surname}
+                    </div>
+                    <div className="sb-sidenav-footer">
+                        <div className="small">Patient ID:</div>
+                        {user._id}
+                    </div></h5>
+                        <h1 className="mt-4 pt-5">Patient Dashboard</h1>
                         <ol className="breadcrumb mb-4">
-                            <li className="breadcrumb-item active">Welcome, {user.Name +" "+ user.Surname}</li>
+                            <li className="breadcrumb-item active">Welcome, {user.Name}!</li>
                         </ol>
                         <div className="row">
                             <div className="col-xl-3 col-md-6">
@@ -156,14 +167,14 @@ function PtDashboard() {
                                phone={doctor.PhoneNumber}/>
 
                             </div>
-                            <div className="card-body">
+                            <div className="card-body py-5">
                                 
                             </div>
                         {/* </div>
                     </div> */}
                 </main>
-                <footer className="py-4 bg-light mt-auto">
-                    <div className="container-fluid">
+                <footer className="py-5 bg-light mt-auto">
+                    <div className="container-fluid py-3">
                         <div className="d-flex align-items-center justify-content-between small">
                             <div className="text-muted">Copyright &copy; HealthApp 2020</div>
                             <div>

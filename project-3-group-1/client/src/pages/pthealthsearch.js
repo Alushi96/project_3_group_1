@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Actioncard from "../components/actioncard";
-import Locationcard from "../components/locationcard";
 import API from "../utils/API";
 import { useAuth } from "../context/auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Healthcondition from "../components/Healthcondition";
 
 
-function PtHealthSearch() {
+
+function PtDashboard() {
 
     const [user, setUser] = useState([])
     const [isLoaded, setLoaded] = useState(false);
@@ -55,10 +55,11 @@ function PtHealthSearch() {
 
 
         return (
+            <div className="pt-5 bg-white">
         <div>
            <div className="sb-nav-fixed">
-           <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a className="navbar-brand" href="index.html">HealthApp</a>
+        <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a className="navbar-brand" href="/ptdashboard">HealthApp</a>
             <button className="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i className="fas fa-bars"></i></button>
             {/* <!-- Navbar Search--> */}
             <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -67,57 +68,21 @@ function PtHealthSearch() {
             {/* <!-- Navbar--> */}
            
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div className="sb-sidenav-menu">
-                        <div className="nav">
-                            <div className="sb-sidenav-menu-heading">Menu</div>
-                            <a className="nav-link" href="/ptdashboard">
-                                <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
-                            <div className="sb-sidenav-menu-heading">Your Health</div>
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                                My Appointments
-                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                            </a>
-                            <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav className="sb-sidenav-menu-nested nav">
-                                    <a className="nav-link" href="#">Schedule Appointment</a>
-                                    <a className="nav-link" href="#">Virtual Appointment</a>
-                                </nav>
-                            </div>
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                               My Health Record
-                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                            </a>
-                            <div className="sb-sidenav-menu-heading">Additional Features</div>
-                            <a className="nav-link" href="/pthealthsearch">
-                                <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
-                                Health Condition Search
-                            </a>
-                        
-                        </div>
-                    </div>
-                    <div className="sb-sidenav-footer">
+        <div id="layoutSidenav_content">
+            <main className="bg-light">
+                    <div className="container-fluid bg-light">
+                        <h5 className="mt-4 pt-5 float-right pr-4">           
+                        <div className="sb-sidenav-footer">
                         <div className="small">Logged in as:</div>
                         {user.Name +" "+ user.Surname}
                     </div>
                     <div className="sb-sidenav-footer">
                         <div className="small">Patient ID:</div>
                         {user._id}
-                    </div>
-                </nav>
-            </div>
-            <div id="layoutSidenav_content">
-            <main className="bg-light">
-                    <div className="container-fluid bg-light">
-                        <h1 className="mt-4">Patient Dashboard</h1>
+                    </div></h5>
+                        <h1 className="mt-4 pt-5">Patient Dashboard</h1>
                         <ol className="breadcrumb mb-4">
-                            <li className="breadcrumb-item active">Welcome, {user.Name +" "+ user.Surname}</li>
+                            <li className="breadcrumb-item active">Welcome, {user.Name}!</li>
                         </ol>
                         <div className="row">
                             <div className="col-xl-3 col-md-6">
@@ -149,18 +114,16 @@ function PtHealthSearch() {
                             </div>
                            <Actioncard title="Health Library Search" color="bg-danger"/>
                         </div>
-                        <div className="card mb-4">
-                            <div className="card-header">
+                            </div>
+                            <div className="card-header pb-5">
                                 <Healthcondition />
                             </div>
-                            <div className="card-body">
+                            <div className="card-body pb-5">
                                 
                             </div>
-                        </div>
-                    </div>
                 </main>
-                <footer className="py-4 bg-light mt-auto">
-                    <div className="container-fluid">
+                <footer className="py-5 bg-light mt-auto">
+                    <div className="container-fluid py-3">
                         <div className="d-flex align-items-center justify-content-between small">
                             <div className="text-muted">Copyright &copy; HealthApp 2020</div>
                             <div>
@@ -178,4 +141,4 @@ function PtHealthSearch() {
 );
 }
 
-export default PtHealthSearch;
+export default PtDashboard;
