@@ -173,7 +173,7 @@ function DrDashboard() {
                                     <div className="card bg-warning text-white mb-4">
                                         <div className="card-body">Begin Your Virtual Visit</div>
                                         <div className="card-footer d-flex align-items-center justify-content-between">
-                                            <a className="small text-white stretched-link" href="#">View Details</a>
+                                            <a className="small text-white stretched-link" href="/ptzoom">View Details</a>
                                             <div className="small text-white"><i className="fas fa-angle-right"></i></div>
                                         </div>
                                     </div>

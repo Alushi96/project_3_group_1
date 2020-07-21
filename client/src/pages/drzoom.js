@@ -15,7 +15,7 @@ const API_SECRET = "rI2T6cwPVk9rWd4BxSQufKpsOunvJvH7mjWU";
 var meetingNumber = "3356527600"
 var role = "1"
 var leaveUrl = 'http://localhost:3000/drzoom'
-var userName = 'WebSDK'
+var userName = 'Doctor'
 var userEmail = ''
 var passWord = '5HYqGY'
 var signa;
