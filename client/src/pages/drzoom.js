@@ -8,13 +8,18 @@ import { useAuth } from "../context/auth";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-var signatureEndpoint = 'http://localhost:4000/'
+// var signatureEndpoint = 'http://localhost:4000/'
 var apiKey = 'rCTS33F9QzaWz2z_KtB2MA'
 const API_KEY = "rCTS33F9QzaWz2z_KtB2MA";
 const API_SECRET = "rI2T6cwPVk9rWd4BxSQufKpsOunvJvH7mjWU";
 var meetingNumber = "3356527600"
 var role = "1"
-var leaveUrl = 'http://localhost:3000/drzoom'
+var leaveUrl;
+if (process.env.NODE_ENV === "production") {
+    leaveUrl = "https://reacthealthapp.herokuapp.com/";
+} else {
+    leaveUrl = 'http://localhost:3000/drzoom'
+}
 var userName = 'Doctor'
 var userEmail = ''
 var passWord = '5HYqGY'
